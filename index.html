@@ -8,6 +8,28 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+    $(document).ready(function() {
+        $('body').hide().fadeIn(3000,function(){alert("done!");});
+       $('img').hide();
+       /* how jquery event works */
+       $('h1').dblclick(function(){
+
+        // $(this).slideUp();
+        $(this).parent().children('p').slideToggle();
+      
+            
+        });
+
+       // var content = $('h1').text()
+       
+    });
+
+
+
+
+
+</script>     
 
 </head>
 
@@ -74,7 +96,7 @@
             <p> Try alert, open, location, url </p>
             <script>
                // window.alert("hihih");
-                //document.write(document.URL);
+                // document.write(document.URL);
                
                 
             </script>
@@ -136,7 +158,7 @@
                 }
             </script>
             <p> <input type="text" name="num1" /> + <input type="text" name="num2">
-                <input type="button" value="=" onclick="calculate();">
+                <input type="button" value="=" onclick=calculate();>
                 <label id="result"> ? </label>
             </p>
 
@@ -185,13 +207,13 @@
             <input type="text" id="square" placeholder="Type in a number"> <sup> 2 </sup> =
             <label id="r"> ? </label>
             <script>
-                function calsqure(){
-                    console.log("Calculating square!!");
+                    function calsqure(){
+                        console.log("Calculating square!!");
                     var num = document.getElementById('square').value;
 
                     var ans = parseInt(num)*parseInt(num);
                
-                    document.getElementById('r').textContent="squared!"+ans;
+                    document.getElementById('r').textContent="squared!" + ans;
                 }
                    
                    
@@ -404,10 +426,11 @@
             function dosquare(){
                 var N = parseInt(document.getElementById('inputnumber1').value);
                 result +="<table>";
-                for(var i=1; i<=N; i++) {
+                for(var i=1; i<=9; i++) {
                     result += "<tr>";
                     for(var j=1; j<=9;j++){
                         var isquare = i*j;
+                        result += "<td>"+i+"x"+j+"= "+isquare+"</td>"
                         document.writeln("<h2>"+ isquare+"</h1>");
                     }
                        
@@ -463,7 +486,7 @@
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
             <p> <input type="button" id="roll" value="roll" /> </p>
-            <p> <img src="img/die1.png"> </p>
+            <p> <img id="dieimage" src="img/die1.png"> </p>
             <table>
                 <tr>
                     <th>Result</th>
@@ -485,6 +508,39 @@
                 </tr>
             </table>
 
+       <script>
+           //event - click the button
+            document.getElementById("roll").addEventListener('click',rolldice);
+
+
+           // event handler - roll dice
+            var stats = [0,0,0,0,0,0];
+           function rolldice() {
+                console.log("action works");
+                var e1 = document.getElementById('dieimage');
+                var n = Math.floor(Math.random()*6)+1
+                e1.setAttribute("src","img/die"+n+".png");
+                stats[n-1]++;
+                //display the number in the right place
+                document.getElementById('r'+n).textContent=stats[n-1].toString();
+               
+                
+
+
+
+
+            }
+
+
+
+
+
+       </script>
+       
+       
+       
+       
+       
         </div>
 
 
@@ -506,9 +562,24 @@
                 <img src="img/usca5.jpg" alt="usca">
             </div>
 
+        
+        <script>
+            var index = 0; //index of image 
+            var imglist = document.querySelectorAll('.img-container-hide');
+            //start animations 
+            setInterval(changepic,3000);
+            function changepic() {
+                imglist[index].setAttribute('class','.img-container-hide');
+                index++;
+                index = index % 5;
+                imglist[index].setAttribute('class','.img-container');
+
+           
+            }
+
+        </script>
+
         </div>
-
-
         <div class="practice">
             <h1>JavaScript Object </h1>
             <p> Hotel registration </p>
